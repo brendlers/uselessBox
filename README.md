@@ -6,18 +6,14 @@ Einfaches Projekt zur Veranschaulichung verschiedener Technologien.
 ## Was ist notwendig?
 Zur Bewältigung des Projektes sind Kenntnisse in **3D-Konstruktion, Montage, Elektronik, 3D-Druck, und Softwareentwicklung** notwendig. Hört sich erst mal schlimm an, ist aber überschaubar.
 ### Verwendete Werkzeuge
-Lötkolben
-Schneidzange
-Mehrzweckmesser
-Feuerzeug
-3D-Drucker
+- Lötkolben
+- Schneidzange
+- Mehrzweckmesser
+- Feuerzeug
+- 3D-Drucker
 ### Verbrauchsmaterial
-Haftvermittler Haarspray
-Werkstoff 3D-Drucker Filament
-## Grober Ablauf
-Überlegen was passieren muss.
-Es wird ein Gehäuse benötigt das alle Teile aufnimmt.
-Die Teile sollen mit möglichst wenig Werkzeug, Schrauben, oder andere Zusatzteile zusammengebaut werden können.
+- Haftvermittler Haarspray
+- Werkstoff 3D-Drucker Filament
 ### Benötigte Kaufteile
 
 | Anzahl | Bezeichnung   | Pinzahl | Rastermaß (mm) | Beschreibung |
@@ -27,6 +23,11 @@ Die Teile sollen mit möglichst wenig Werkzeug, Schrauben, oder andere Zusatztei
 | 1      | Arduino UNO   |         |                |              |
 | 2      | Stiftleiste   | 4       | 2,54           | 90°          |
 | 1      | Buchsenleiste | 3       | 2,54           |              |
+|        |               |         |                |              |
+## Grober Ablauf
+Überlegen was passieren muss.
+Es wird ein Gehäuse benötigt das alle Teile aufnimmt.
+Die Teile sollen mit möglichst wenig Werkzeug, Schrauben, oder andere Zusatzteile zusammengebaut werden können.
 ### Fertigen der Teile
 1. Das **3D-Modell** wurde in **Fusion 360** erstellt.
 2. Das **3D-Modell** wurde in **Prusa Slicer** und/oder **Orca Slicer** in **G-Code** umgewandelt.
@@ -57,3 +58,5 @@ Die Teile sollen mit möglichst wenig Werkzeug, Schrauben, oder andere Zusatztei
 ## Fehlerbehebung
 - Kabel richtig gesteckt?
 - Hebel in der richtigen Position/Ausrichtung angebracht?
+
+
