@@ -61,6 +61,7 @@ void loop() {
       default:
       servo_forwardMove();
     }
+    Serial.println("DONE");
   } 
   else if (digitalRead(PIN_SWITCH_ON) == false && digitalRead(PIN_SWITCH_OFF) == true && last_switch_state == false) {
     //Den aktuellen Status als 'true' festlegen.
@@ -83,6 +84,7 @@ void loop() {
       default:
       servo_backwardMove();
     }
+    Serial.println("DONE");
   }
 }
 
