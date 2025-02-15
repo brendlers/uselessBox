@@ -1,5 +1,7 @@
 ## Was ist das alles?
 Einfaches Projekt zur Veranschaulichung verschiedener Technologien.
+
+Da [es keinen Sinn und keinen Wert gibt](https://de.wikipedia.org/wiki/Nihilismus), habe ich auch ein sinnloses Projekt ausgewählt. Die **[uselessBox](https://de.wikipedia.org/wiki/Leave-Me-Alone-Box)** .
 ## Was ist notwendig?
 Zur Bewältigung des Projektes sind Kenntnisse in 3D-Konstruktion, Montage, Elektronik, 3D-Druck, und Softwareentwicklung notwendig. Hört sich erst mal schlimm an, ist aber überschaubar.
 ### Verwendete Werkzeuge
