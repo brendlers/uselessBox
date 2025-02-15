@@ -67,6 +67,51 @@ Die [elektronischen Bauteile](https://de.wikipedia.org/wiki/Liste_elektrischer_B
 ## Schreiben des Programmes
 1. Die Software für den [Mikrocontroller](https://de.wikipedia.org/wiki/Mikrocontroller) der **[uselessBox](https://de.wikipedia.org/wiki/Leave-Me-Alone-Box)** wird in der [Arduino IDE](https://de.wikipedia.org/wiki/Arduino_IDE) und/oder [VS-Code](https://de.wikipedia.org/wiki/Visual_Studio_Code) mit [PlatformIO](https://de.wikipedia.org/wiki/PlatformIO) entwickelt.
 2. Die entwickelte Software wird durch ein [USB-Kabel](https://de.wikipedia.org/wiki/Universal_Serial_Bus) auf den [Mikrocontroller](https://de.wikipedia.org/wiki/Mikrocontroller) geschrieben.
+
+```mermaid
+graph TD;
+%%{init: {"themeVariables": {"fontSize": "8pt"}}}%%
+
+    A[Start] -->|Setup| B[Servo an Pin binden];
+    B --> C[Schalter-Pins initialisieren];
+    C --> D[LED-Pin initialisieren];
+    D --> E[Serielle Kommunikation starten];
+    E --> |Main Loop| F[Loop beginnt];
+    
+    F -->|Schalter ON gedrückt| G{Variationen durchlaufen};
+    G -->|0| H-->servo_forwardMove0;
+    G -->|1| I-->servo_forwardMove1;
+    G -->|2| J-->servo_forwardMove2;
+    G -->|Default| K-->servo_forwardMove;
+    R --> L[Serial.println];
+    
+    F -->|Schalter OFF gedrückt| M{Variationen durchlaufen};
+    M -->|0| N-->servo_backwardMove0;
+    M -->|1| O-->servo_backwardMove1;
+    M -->|2| P-->servo_backwardMove2;
+    M -->|Default| Q-->servo_backwardMove;
+
+	servo_forwardMove0 --> R;
+	servo_forwardMove1 --> R;
+	servo_forwardMove2 --> R;
+    servo_forwardMove --> R;
+
+	servo_backwardMove0 --> R;
+	servo_backwardMove1 --> R;
+	servo_backwardMove2 --> R;
+	servo_backwardMove --> R;
+
+	
+	
+	H --> F;
+    I --> F;
+    J --> F;
+    K --> F;
+    N --> F;
+    O --> F;
+    P --> F;
+
+```
 ## Fehlerbehebung
 Die üblichen Verdächtigen:
 - Kabel richtig gesteckt?
