@@ -1,3 +1,5 @@
+# UselessBox
+
 ## Was ist das alles?
 Einfaches Projekt zur Veranschaulichung verschiedener Technologien.
 
