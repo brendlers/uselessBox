@@ -53,7 +53,7 @@
             "state": {
               "type": "search",
               "state": {
-                "query": "tag:#UselessBox",
+                "query": "",
                 "matchingCase": false,
                 "explainSearch": false,
                 "collapseAll": false,
@@ -74,8 +74,7 @@
               "title": "Lesezeichen"
             }
           }
-        ],
-        "currentTab": 1
+        ]
       }
     ],
     "direction": "horizontal",
@@ -169,7 +168,7 @@
       "command-palette:Befehlspalette öffnen": false
     }
   },
-  "active": "557ac221dd323c5e",
+  "active": "2bb3025f7a88d344",
   "lastOpenFiles": [
     "Servo.md",
     "README.md",

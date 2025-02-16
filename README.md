@@ -3,9 +3,16 @@
 ## Was ist das alles?
 Einfaches Projekt zur Veranschaulichung verschiedener Technologien.
 
-Da [es keinen Sinn und keinen Wert gibt](https://de.wikipedia.org/wiki/Nihilismus), habe ich auch ein sinnloses Projekt ausgewählt. Die **[uselessBox](https://de.wikipedia.org/wiki/Leave-Me-Alone-Box)** .
+Da [nichts einen Sinn hat und es auch keinen Wert gibt](https://de.wikipedia.org/wiki/Nihilismus), habe ich auch ein sinnloses Projekt ausgewählt. Die **[uselessBox](https://de.wikipedia.org/wiki/Leave-Me-Alone-Box)** . Manche nennen es auch die **Leave-Me-Alone-Box**.
 ## Was ist notwendig?
 Zur Bewältigung des Projektes sind Kenntnisse in 3D-Konstruktion, Montage, Elektronik, 3D-Druck, und Softwareentwicklung notwendig. Hört sich erst mal schlimm an, ist aber überschaubar.
+### Verwendete Software
+#### CAD-Programm
+[FreeCAD](https://www.freecad.org/index.php?lang=de), [Autodesk Fusion 360](https://www.autodesk.com/de/products/fusion-360/)
+#### Slicer
+[Prusa Slicer][https://www.prusa3d.com/] oder [Orca Slicer](https://orca-slicer.com/)
+#### Entwicklungsumgebung
+[Arduino IDE](https://de.wikipedia.org/wiki/Arduino_IDE) oder [VS Code](https://code.visualstudio.com/) mit [Platform IO](https://platformio.org/)
 ### Verwendete Werkzeuge
 - Lötkolben
 - Schneidzange
@@ -70,6 +77,15 @@ Die [elektronischen Bauteile](https://de.wikipedia.org/wiki/Liste_elektrischer_B
 1. Die Software für den [Mikrocontroller](https://de.wikipedia.org/wiki/Mikrocontroller) der **[uselessBox](https://de.wikipedia.org/wiki/Leave-Me-Alone-Box)** wird in der [Arduino IDE](https://de.wikipedia.org/wiki/Arduino_IDE) und/oder [VS-Code](https://de.wikipedia.org/wiki/Visual_Studio_Code) mit [PlatformIO](https://de.wikipedia.org/wiki/PlatformIO) entwickelt.
 2. Die entwickelte Software wird durch ein [USB-Kabel](https://de.wikipedia.org/wiki/Universal_Serial_Bus) auf den [Mikrocontroller](https://de.wikipedia.org/wiki/Mikrocontroller) geschrieben.
 
+HINWEIS! Das Diagramm ist weder vollständig noch komplett korrekt!
+WARNUNG! Je nach Einbauposition des Hebels kann Gehäuse, Arduino oder sonstiges **ZERSTÖRT** werden.
+ACHTUNG! Im Programm sind aktuell die **Endpositionen** von **90 und 160** vorgesehen! wenn der **Servo** auf der **hinteren Endlage** steht, muss der **Hebel** in etwa **horizontal** angebracht werden!
+ACTHUNG! Hardware-Projekte und Software-Projekte können NICHT beliebig abgeändert oder kombiniert werden!
+
+HINWEIS: Vor dem verwenden neuer Software IMMER den Servo ausbauen! (Siehe Video)
+![[useless box v10.mp4]]
+
+
 ```mermaid
 graph TD;
 %%{init: {"themeVariables": {"fontSize": "8pt"}}}%%
@@ -110,5 +126,3 @@ graph TD;
 Die üblichen Verdächtigen:
 - Kabel richtig gesteckt?
 - Hebel in der richtigen Position/Ausrichtung angebracht?
-
-
