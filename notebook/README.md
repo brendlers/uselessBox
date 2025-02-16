@@ -11,7 +11,7 @@ Zur Bewältigung des Projektes sind Kenntnisse in 3D-Konstruktion, Montage, Elek
 - Feuerzeug
 - [3D-Drucker](https://de.wikipedia.org/wiki/3D-Druck) nach dem [FDM-Prinzip](https://de.wikipedia.org/wiki/Fused_Deposition_Modeling)
 ### Verbrauchsmaterial
-- [Haftvermittler](https://de.wikipedia.org/wiki/Haftvermittler) Haarspray (da [PVA](https://de.wikipedia.org/wiki/Polyvinylacetat)-basiert
+- [Haftvermittler](https://de.wikipedia.org/wiki/Haftvermittler) Haarspray (da [PVA](https://de.wikipedia.org/wiki/Polyvinylacetat)-basiert)
 - [Werkstoff]([Material](https://de.wikipedia.org/wiki/Werkstoff)) 3D-Drucker [Filament](https://de.wikipedia.org/wiki/Filament_(3D-Druck))
 - [Lötzinn](https://de.wikipedia.org/wiki/Lot_(Metall))
 - [Flussmittel](https://de.wikipedia.org/wiki/Flussmittel_(L%C3%B6ten))
@@ -48,22 +48,22 @@ Zur Bewältigung des Projektes sind Kenntnisse in 3D-Konstruktion, Montage, Elek
 7. [Nacharbeit](https://de.wikipedia.org/wiki/Rework) der Teile.
 ### Fertigen der elektronischen Bauteile
 Die [elektronischen Bauteile](https://de.wikipedia.org/wiki/Liste_elektrischer_Bauelemente) werden durch [Steckverbinder](https://de.wikipedia.org/wiki/Steckverbinder) und [Löten](https://de.wikipedia.org/wiki/L%C3%B6ten) verbunden. 
-8. [Stiftleisten](https://de.wikipedia.org/wiki/Stiftleiste) aussuchen.
-9. Kabel anlöten.
-10. [Buchsenleiste](https://de.wikipedia.org/wiki/Stiftleiste) an [Kippschalter](https://de.wikipedia.org/wiki/Schalter_(Elektrotechnik) anlöten.
+1. [Stiftleisten](https://de.wikipedia.org/wiki/Stiftleiste) aussuchen.
+2. Kabel anlöten.
+3. [Buchsenleiste](https://de.wikipedia.org/wiki/Stiftleiste) an [Kippschalter](https://de.wikipedia.org/wiki/Schalter_(Elektrotechnik) anlöten.
 ## Zusammenbau der Bauteile
-11. Deckel an Gehäuse anbringen.
-12. Achsen einschmelzen.
-13. [Arduino UNO](https://de.wikipedia.org/wiki/Arduino_(Plattform)) einsetzen.
-14. [Arduino UNO](https://de.wikipedia.org/wiki/Arduino_(Plattform)) einschrauben.
-15. [Stiftleisten](https://de.wikipedia.org/wiki/Stiftleiste)  mit [I/O-Pins](https://de.wikipedia.org/wiki/GPIO) verbinden.
-16. [[Servo]] in Drehsperre einsetzen.
-17. Hebel an [[Servo]] anbringen.
-18. Drehsperre in Gehäuse einsetzen.
-19. [[Servo]] in Drehsperre und Gehäuse einschieben.
-20. [Kippschalter](https://de.wikipedia.org/wiki/Schalter_(Elektrotechnik)) in Deckel einsetzen.
-21. [I/O-Pins](https://de.wikipedia.org/wiki/GPIO) mit [[Servo]] verbinden.
-22. [I/O-Pins](https://de.wikipedia.org/wiki/GPIO) mit [Kippschalter](https://de.wikipedia.org/wiki/Schalter_(Elektrotechnik)) verbinden.
+1. Deckel an Gehäuse anbringen.
+2. Achsen einschmelzen.
+3. [Arduino UNO](https://de.wikipedia.org/wiki/Arduino_(Plattform)) einsetzen.
+4. [Arduino UNO](https://de.wikipedia.org/wiki/Arduino_(Plattform)) einschrauben.
+5. [Stiftleisten](https://de.wikipedia.org/wiki/Stiftleiste)  mit [I/O-Pins](https://de.wikipedia.org/wiki/GPIO) verbinden.
+6. [[Servo]] in Drehsperre einsetzen.
+7. Hebel an [[Servo]] anbringen.
+8. Drehsperre in Gehäuse einsetzen.
+9. [[Servo]] in Drehsperre und Gehäuse einschieben.
+10. [Kippschalter](https://de.wikipedia.org/wiki/Schalter_(Elektrotechnik)) in Deckel einsetzen.
+11. [I/O-Pins](https://de.wikipedia.org/wiki/GPIO) mit [[Servo]] verbinden.
+12. [I/O-Pins](https://de.wikipedia.org/wiki/GPIO) mit [Kippschalter](https://de.wikipedia.org/wiki/Schalter_(Elektrotechnik)) verbinden.
 ## Schreiben des Programmes
 1. Die Software für den [Mikrocontroller](https://de.wikipedia.org/wiki/Mikrocontroller) der **[uselessBox](https://de.wikipedia.org/wiki/Leave-Me-Alone-Box)** wird in der [Arduino IDE](https://de.wikipedia.org/wiki/Arduino_IDE) und/oder [VS-Code](https://de.wikipedia.org/wiki/Visual_Studio_Code) mit [PlatformIO](https://de.wikipedia.org/wiki/PlatformIO) entwickelt.
 2. Die entwickelte Software wird durch ein [USB-Kabel](https://de.wikipedia.org/wiki/Universal_Serial_Bus) auf den [Mikrocontroller](https://de.wikipedia.org/wiki/Mikrocontroller) geschrieben.
@@ -72,18 +72,18 @@ Die [elektronischen Bauteile](https://de.wikipedia.org/wiki/Liste_elektrischer_B
 graph TD;
 %%{init: {"themeVariables": {"fontSize": "8pt"}}}%%
 
-    A[Start] -->|Setup| B[Servo an Pin binden];
+    A[Start] -->|Setup Block| B[Servo an Pin binden];
     B --> C[Schalter-Pins initialisieren];
     C --> D[LED-Pin initialisieren];
     D --> E[Serielle Kommunikation starten];
-    E --> |Main Loop| F[Loop beginnt];
+    E --> |Main Loop Block| F[Wurde Taste gedrückt?];
     
     F -->|Schalter ON gedrückt| G{Variationen durchlaufen};
     G -->|0| H-->servo_forwardMove0;
     G -->|1| I-->servo_forwardMove1;
     G -->|2| J-->servo_forwardMove2;
     G -->|Default| K-->servo_forwardMove;
-    R --> L[Serial.println];
+
     
     F -->|Schalter OFF gedrückt| M{Variationen durchlaufen};
     M -->|0| N-->servo_backwardMove0;
@@ -100,17 +100,9 @@ graph TD;
 	servo_backwardMove1 --> R;
 	servo_backwardMove2 --> R;
 	servo_backwardMove --> R;
-
 	
-	
-	H --> F;
-    I --> F;
-    J --> F;
-    K --> F;
-    N --> F;
-    O --> F;
-    P --> F;
-
+	R --> L[Serial.println];
+	L --> F
 ```
 ## Fehlerbehebung
 Die üblichen Verdächtigen:

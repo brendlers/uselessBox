@@ -40,8 +40,8 @@ void loop() {
     //Den aktuellen Status als 'false' festlegen, wenn jetzt der Schalter wackelt, dann werden nicht alle oberen Bedingungen erfüllt und es gibt weniger Fehler
     last_switch_state = false;
 
-    //Eine Zahl zwischen 0 und 2 festlegen, man halt also 3 Varianten: 0, 1, 2
-    variation = (variation + 1) % 3;
+    //Eine Zahl zwischen 0 und 3 festlegen, man halt also 4 Varianten: 0, 1, 2, 3
+    variation = (variation + 1) % 4;
 
     //Dem Computer was zurufen.
     Serial.println("ON");
@@ -55,7 +55,7 @@ void loop() {
       case 1:
         servo_forwardMove1();
         break;
-      case 99:
+      case 2:
         servo_forwardMove2();
         break;
       default:
