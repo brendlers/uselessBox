@@ -95,34 +95,63 @@ void servo_forwardMove(){
   myservo.write(minValue);
 }
 
+//Der Arm fährt langsam vor. So richtig langsam!
 void servo_forwardMove0(){
-  myservo.write(minValue);
+  for (int pos = maxValue; pos > minValue; pos--){
+    myservo.write(pos);
+    delay(50);
+  }
 }
 
+//Der Arm fährt zuerst ein Stück vor, um zu schauen was los ist, dann wartet er kurz und drückt den Taster.
 void servo_forwardMove1(){
+  delay(200);
+  myservo.write(minValue + 30);
+  delay(500);
   myservo.write(minValue);
 }
 
+//Der Arm fährt langsam vor. So richtig langsam! Aber mit Twist!
 void servo_forwardMove2(){
+  for (int pos = maxValue; pos > minValue + 30; pos--){
+    myservo.write(pos);
+    delay(80);
+  }
+  delay(200);
+  myservo.write(minValue - 50);
+  delay(200);
   myservo.write(minValue);
+  
 }
 
 //Rückwärts
+//Fährt zurück, wartet, und fährt dann vor um zu lauern!
 void servo_backwardMove(){
   myservo.write(maxValue);
   delay(200);
   myservo.write(minValue + 20);
 }
 
+//Direkter Rückzug!
 void servo_backwardMove0(){
   //Der Servo soll auf Position maxValue fahren.
   myservo.write(maxValue);
 }
 
+//In diesem Programm fährt der Arm erst zurück, dann vier Mal vor und zurück
 void servo_backwardMove1(){
   myservo.write(maxValue);
+  delay(200);
+  myservo.write(minValue + 20);
+  delay(200);
+  myservo.write(minValue + 30);
+  delay(200);
+  myservo.write(minValue + 10);
+  delay(200);
+  myservo.write(minValue + 30);
 }
 
+//Hier fährt er direkt zurück.
 void servo_backwardMove2(){
   myservo.write(maxValue);
 }

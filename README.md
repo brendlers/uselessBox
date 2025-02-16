@@ -83,7 +83,6 @@ ACHTUNG! Im Programm sind aktuell die **Endpositionen** von **90 und 160** vorge
 ACTHUNG! Hardware-Projekte und Software-Projekte können NICHT beliebig abgeändert oder kombiniert werden!
 
 HINWEIS: Vor dem verwenden neuer Software IMMER den Servo ausbauen! (Siehe Video)
-![[https://github.com/brendlers/uselessBox/blob/main/vid/useless%20box%20v10.mp4]]
 
 
 ```mermaid
