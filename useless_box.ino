@@ -1,3 +1,37 @@
+/*
+  Dies ist ein kleines Arduino Projekt zum Betrieb einer Useless-Box.
+
+  Die verwendeten PINS sind:
+  
+  Für den Servo:
+  5V                                     an 5V
+  GND                                    an GND
+  Signal                                 an GPIO10
+
+  Für den Taster:
+  Position 2        (NO - Normal Open)   an GPIO11
+  Mittlerer Kontakt (Common)             an 5V
+  Position 1        (NC - Normal Closed) an GPIO12
+
+                  5 V
+            ________|________
+          |         |       |
+          |          \      |
+          |           \     |
+          | (NO)o      o(NC)|
+          |_____|______|____|
+                |      |
+              GPIO11 GPIO12
+
+Andere Useless Machines verwenden andere PINs, andere Maße und andere Drehwerte, also minValue und maxValue!
+
+WARNUNG! Je nach Einbauposition des Hebels kann Gehäuse, Arduino oder sonstiges **ZERSTÖRT** werden.
+ACHTUNG! Im Programm sind aktuell die **Endpositionen** von **90 und 160** vorgesehen! wenn der **Servo** auf der **hinteren Endlage** steht, muss der **Hebel** in etwa **horizontal** angebracht werden!
+ACTHUNG! Hardware-Projekte und Software-Projekte können NICHT beliebig abgeändert oder kombiniert werden!
+
+HINWEIS: Vor dem verwenden neuer Software IMMER den Servo ausbauen! (Siehe Video)
+*/
+
 //Einbinden einer Biblithek aus Code-Stücken, die zum Verwenden eines Servos notwendig sind
 #include <Servo.h>
 //Erstellen eines Objektes vom Typ Servo mit dem Namen myservo.
@@ -84,12 +118,18 @@ void loop() {
       default:
       servo_backwardMove();
     }
+    //Dem Computer was zurufen.
     Serial.println("DONE");
   }
 }
 
-
-//Hier sind die verschiedenen Vor- und Zurückbewegungen definiert.
+//***********************************************************************
+//
+// Hier sind die verschiedenen Vor- und Zurückbewegungen definiert.
+//
+// Also wenn man was ändern möchte, am besten HIER:
+//
+//***********************************************************************
 //Vorwärts
 void servo_forwardMove(){
   myservo.write(minValue);
@@ -156,6 +196,7 @@ void servo_backwardMove2(){
   myservo.write(maxValue);
 }
 
+// NICHT ANFASSEN! Bitte, bitte!
 //Kleine Funktion zum Umrechnen von Werten.
 int ranger(int min, int max, int ratio){
   //Und hier ist das, wo man Mathe braucht:
