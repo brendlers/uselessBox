@@ -35,13 +35,13 @@ Die Software für den [Mikrocontroller](https://de.wikipedia.org/wiki/Mikrocontr
 - [Flussmittel](https://de.wikipedia.org/wiki/Flussmittel_(L%C3%B6ten))
 ### Benötigte Kaufteile
 
-| Anzahl | Bezeichnung                                                             | Pinzahl | Rastermaß (mm) | Beschreibung |
-| ------ | ----------------------------------------------------------------------- | ------- | -------------- | ------------ |
-| 1      | [Kippschalter](https://de.wikipedia.org/wiki/Schalter_(Elektrotechnik)) | 3       |                | 2 Stellungen |
-| 1      | [Servo](https://de.wikipedia.org/wiki/Servo)                            |         |                | 9g           |
-| 1      | [Arduino UNO](https://de.wikipedia.org/wiki/Arduino_(Plattform))        |         |                |              |
-| 2      | [Stiftleiste](https://de.wikipedia.org/wiki/Stiftleiste)                | 4       | 2,54           | 90°          |
-| 1      | [Buchsenleiste](https://de.wikipedia.org/wiki/Stiftleiste)              | 3       | 2,54           |              |
+| Anzahl | Bezeichnung                                                             | Pinzahl | Rastermaß (mm) | Beschreibung | Genauer Typ / Bezeichnung / Google-Suche    |
+| ------ | ----------------------------------------------------------------------- | ------- | -------------- | ------------ | ------------------------------------------- |
+| 1      | [Kippschalter](https://de.wikipedia.org/wiki/Schalter_(Elektrotechnik)) | 3       |                | 2 Stellungen | Miniatur-Kippschalter, EIN-EIN, 3 A / 250 V |
+| 1      | [Servo](https://de.wikipedia.org/wiki/Servo)                            |         |                | 9g           | SG90 9g Micro Servomotor                    |
+| 1      | [Arduino UNO](https://de.wikipedia.org/wiki/Arduino_(Plattform))        |         |                |              | Arduino Uno Rev3                            |
+| 2      | [Stiftleiste](https://de.wikipedia.org/wiki/Stiftleiste)                | 4       | 2,54           | 90°          | Stiftleiste   RM 2,54mm, gewinkelt, 1x4     |
+| 1      | [Buchsenleiste](https://de.wikipedia.org/wiki/Stiftleiste)              | 3       | 2,54           |              | Buchsenleiste RM 2,54mm, gerade,    1x3     |
 ### Benötigte 3D-Druck-Teile
 
 | Anzahl | Bezeichnung |
@@ -102,7 +102,7 @@ graph TD;
     B --> C[Schalter-Pins initialisieren];
     C --> D[LED-Pin initialisieren];
     D --> E[Serielle Kommunikation starten];
-    E --> |Main Loop Block| F[Wurde Taste gedrückt?];
+    E --> |Main Loop Block| F[Die Schleife, die immer durchlaufen wird];
     
     F -->|Schalter ON gedrückt| G{Variationen durchlaufen};
     G -->|0| H-->servo_forwardMove0;
@@ -117,20 +117,119 @@ graph TD;
     M -->|2| P-->servo_backwardMove2;
     M -->|Default| Q-->servo_backwardMove;
 
-	servo_forwardMove0 --> R;
-	servo_forwardMove1 --> R;
-	servo_forwardMove2 --> R;
-    servo_forwardMove --> R;
+	servo_forwardMove0 --> T;
+	servo_forwardMove1 --> T;
+	servo_forwardMove2 --> T;
+    servo_forwardMove --> T;
 
-	servo_backwardMove0 --> R;
-	servo_backwardMove1 --> R;
-	servo_backwardMove2 --> R;
-	servo_backwardMove --> R;
+	servo_backwardMove0 --> T;
+	servo_backwardMove1 --> T;
+	servo_backwardMove2 --> T;
+	servo_backwardMove --> T;
 	
-	R --> L[Serial.println];
+	T --> L[Serial.println];
 	L --> F
 ```
 ## Fehlerbehebung
 Die üblichen Verdächtigen:
 - Kabel richtig gesteckt?
 - Hebel in der richtigen Position/Ausrichtung angebracht?
+
+```mermaid
+graph TD;
+%%{init: {"themeVariables": {"fontSize": "8pt"}}}%%
+
+Start@{ shape: circle } --> Includes@{ label: "Servo.h einbinden" }
+Includes --> CreateObject@{ label: "Servo Objekt erstellen" }
+CreateObject --> DefinePins@{ label: "Pins festlegen" }
+DefinePins --> DefineAngles@{ label: "Drehwinkel festlegen" }
+DefineAngles --> LastState@{ label: "Merker des letzten Schaltzustandes" }
+LastState --> LastVariation@{ label: "Variation-Startwert festlegen" }
+LastVariation --> ServoBind
+
+LEDbind --> Loop
+Loop --> F
+
+
+subgraph defaultForward [Funktion defaultForward]
+	C_start( Start C ) --> C1[/Befehl 1/]
+	C1 --> C2[/Befehl 2/]
+	C2 --> C3[/Befehl 3/]
+	C3 --> C_end( Ende C )
+end
+
+subgraph ForwardMove [Funktion ForwardMove]
+	ForwardMove_start( Start C ) --> ForwardMoveC1[/Befehl 1/]
+	ForwardMoveC1 --> ForwardMoveC2[/Befehl 2/]
+	ForwardMoveC2 --> ForwardMoveC3[/Befehl 3/]
+	ForwardMoveC3 --> ForwardMoveC_end( Ende ForwardMove )
+end
+
+subgraph defaultBackward [Funktion defaultBackward]
+	D_start( Start D ) --> D1[/Befehl 1/]
+	D1 --> D2[/Befehl 2/]
+	D2 --> D3[/Befehl 3/]
+	D3 --> D_end( Ende D )
+end
+
+subgraph BackwardMove [Funktion BackwardMove]
+	BackwardMove_start( Start C ) --> BackwardMoveC1[/Befehl 1/]
+	BackwardMoveC1 --> BackwardMoveC2[/Befehl 2/]
+	BackwardMoveC2 --> BackwardMoveC3[/Befehl 3/]
+	BackwardMoveC3 --> BackwardMoveC_end( Ende ForwardMove )
+end
+
+subgraph voidSetup
+	ServoBind --> SwitchBindA
+	SwitchBindA --> SwitchBindB
+	SwitchBindB --> LEDbind
+end
+
+subgraph voidLoop
+	F --> G@{ shape: diamond}
+	
+	G --> |Nicht Betätigt| H
+	G --> |Betätigt| I
+	
+	H --> CaseOne@{ shape: diamond}
+	I --> CaseTwo@{ shape: diamond}
+	
+	CaseOne --> DingA
+	CaseOne --> DingB
+	CaseOne --> DingC
+	
+	
+	CaseTwo --> DongA
+	CaseTwo --> DongB
+	CaseTwo --> DongC
+	
+	
+	DingA --> DengA	
+	DingB --> DengB
+	DingC --> DengC
+	
+	
+	DongA --> DangA
+	DongB --> DangB
+	DongC --> DangC
+	
+	
+	DengA --> FinalA
+	DengB --> FinalA
+	DengC --> FinalA
+	
+
+	DangA --> FinalA
+	DangB --> FinalA
+	DangC --> FinalA
+	
+	
+	FinalA@{ shape: fork, label: "Fork or Join" } --> TogetherAgain
+	TogetherAgain --> Loop
+end
+
+
+```
+
+
+

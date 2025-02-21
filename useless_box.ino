@@ -1,5 +1,9 @@
-/*
+/* Der graue Teil ist für Benutzer, zum lesen. Genau. Lesen.
   Dies ist ein kleines Arduino Projekt zum Betrieb einer Useless-Box.
+
+  Die Useless Box besteht aus einem Servo, einem Schalter, einem Mikrocontroller und einigen Kunststoffteilen.
+
+  Wenn der Benutzer den Schalter umlegt, ist die Maschine im Ein-Zustand. Nun betätigt der Servo den Schalter um wieder im Aus-Zustand zu sein.
 
   Die verwendeten PINS sind:
   
@@ -8,12 +12,32 @@
   GND                                    an GND
   Signal                                 an GPIO10
 
+  Der Servo erhält seine Position über ein Rechtecksignal. Dieses ist wie folgt aufgebaut:
+
+  |v
+  |  _             _
+  |_| |___________| |____________        O- Servowelle 180°
+  |_________________________________t
+
+  |v
+  |  ______        _______               |
+  |_|      |______|       |______        O  Servowelle 90°
+  |_________________________________t
+
+  |v
+  |  ___________   ____________
+  |_|           |_|            |_       -O  Servowelle 0°
+  |_________________________________t
+
+
+
   Für den Taster:
   Position 2        (NO - Normal Open)   an GPIO11
-  Mittlerer Kontakt (Common)             an 5V
+  Mittlerer Kontakt (Common)             an GND
   Position 1        (NC - Normal Closed) an GPIO12
 
-                  5 V
+                   GND
+                    o
             ________|________
           |         |       |
           |          \      |
@@ -21,7 +45,26 @@
           | (NO)o      o(NC)|
           |_____|______|____|
                 |      |
+                o      o
               GPIO11 GPIO12
+
+Ein Taster sollte immer mit einem PullUp-Widerstand verwendet werden.
+
+          |        
+          |      o
+          |      |
+          |     |-|
+          |     |R|   Im Mikrocontroller
+          |     |-|
+          |      |
+          |      o-------> GPIO-Pin
+          |______|________________________
+                 |
+               \
+       Taster   \
+                 |
+                 o
+                GND
 
 Andere Useless Machines verwenden andere PINs, andere Maße und andere Drehwerte, also minValue und maxValue!
 
